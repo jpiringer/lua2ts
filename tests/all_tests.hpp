@@ -197,5 +197,5 @@ void test_array_indexing() {
     opt.index_adjustment = lua2ts::IndexAdjustment::AllNumeric;
     lua2ts::TypeScriptEmitter emitter(opt);
     std::string ts2 = emitter.emit(*ast);
-    assert(contains(ts2, "arr[(idx) - 1]"));
+    MY_ASSERT(contains(ts2, "arr[(idx) - 1]"));
 }

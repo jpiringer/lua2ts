@@ -12,6 +12,7 @@
 		30DA213F30ACA5A4008CCBF8 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30DA213E30ACA5A4008CCBF8 /* CMakeLists.txt */; };
 		30DA214430ACA60C008CCBF8 /* game.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30DA214130ACA60C008CCBF8 /* game.lua */; };
 		30DA214530ACA60C008CCBF8 /* game.js in Resources */ = {isa = PBXBuildFile; fileRef = 30DA214030ACA60C008CCBF8 /* game.js */; };
+		30DA217C30ACBECC008CCBF8 /* doom_fire2.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30DA217B30ACBECC008CCBF8 /* doom_fire2.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		30DA214030ACA60C008CCBF8 /* game.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
 		30DA214130ACA60C008CCBF8 /* game.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = game.lua; sourceTree = "<group>"; };
 		30DA214230ACA60C008CCBF8 /* game.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = game.ts; sourceTree = "<group>"; };
+		30DA217B30ACBECC008CCBF8 /* doom_fire2.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = doom_fire2.lua; sourceTree = "<group>"; };
+		30DA217D30ACBF05008CCBF8 /* doom_fire2.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = doom_fire2.ts; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -113,6 +116,8 @@
 		30DA214330ACA60C008CCBF8 /* examples */ = {
 			isa = PBXGroup;
 			children = (
+				30DA217B30ACBECC008CCBF8 /* doom_fire2.lua */,
+				30DA217D30ACBF05008CCBF8 /* doom_fire2.ts */,
 				30DA214030ACA60C008CCBF8 /* game.js */,
 				30DA214130ACA60C008CCBF8 /* game.lua */,
 				30DA214230ACA60C008CCBF8 /* game.ts */,
@@ -203,6 +208,7 @@
 				30DA213F30ACA5A4008CCBF8 /* CMakeLists.txt in Resources */,
 				30DA214430ACA60C008CCBF8 /* game.lua in Resources */,
 				30DA214530ACA60C008CCBF8 /* game.js in Resources */,
+				30DA217C30ACBECC008CCBF8 /* doom_fire2.lua in Resources */,
 				30DA213B30ACA509008CCBF8 /* README.md in Resources */,
 			);
 		};
