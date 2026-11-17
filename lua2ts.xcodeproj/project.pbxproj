@@ -46,6 +46,13 @@
 			);
 			target = 30DA212E30ACA15C008CCBF8 /* lua2ts-tests */;
 		};
+		30DA215B30ACB1B4008CCBF8 /* Exceptions for "tests" folder in "lua2ts-tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				test_runner.cpp,
+			);
+			target = 30DA212E30ACA15C008CCBF8 /* lua2ts-tests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -59,6 +66,9 @@
 		};
 		30DA213030ACA15C008CCBF8 /* tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				30DA215B30ACB1B4008CCBF8 /* Exceptions for "tests" folder in "lua2ts-tests" target */,
+			);
 			path = tests;
 			sourceTree = "<group>";
 		};

@@ -7,29 +7,9 @@
 
 #import <XCTest/XCTest.h>
 
-#include <iostream>
-#include <cassert>
-#include <string>
-#include "lexer.hpp"
-#include "parser.hpp"
-#include "emitter.hpp"
+#include "all_tests.hpp"
 
 using namespace lua2ts;
-
-static std::string transpile(const std::string& lua_code, bool emit_types = true) {
-    Lexer lexer(lua_code);
-    auto tokens = lexer.tokenize();
-    Parser parser(std::move(tokens));
-    auto ast = parser.parse();
-    EmitterOptions opt;
-    opt.emit_types = emit_types;
-    TypeScriptEmitter emitter(opt);
-    return emitter.emit(*ast);
-}
-
-static bool contains(const std::string& text, const std::string& sub) {
-    return text.find(sub) != std::string::npos;
-}
 
 @interface lua2ts_tests : XCTestCase
 
@@ -47,7 +27,7 @@ static bool contains(const std::string& text, const std::string& sub) {
 
 - (void)testExample {
     // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // Use MY_ASSERT and related functions to verify your tests produce the correct results.
     // XCTest Documentation
     // https://developer.apple.com/documentation/xctest
 }
@@ -57,9 +37,9 @@ static bool contains(const std::string& text, const std::string& sub) {
     std::string lua = "local x = 42\nlocal a, b = 1, 2\nlocal uninit\n";
     std::string ts = transpile(lua);
 
-    XCTAssert(contains(ts, "let x: any = 42;"));
-    XCTAssert(contains(ts, "let a: any = 1, b: any = 2;"));
-    XCTAssert(contains(ts, "let uninit: any;"));
+    MY_ASSERT(contains(ts, "let x: any = 42;"));
+    MY_ASSERT(contains(ts, "let a: any = 1, b: any = 2;"));
+    MY_ASSERT(contains(ts, "let uninit: any;"));
 }
 
 - (void)test_functions {
@@ -67,18 +47,18 @@ static bool contains(const std::string& text, const std::string& sub) {
     std::string lua = "function greet(name)\n  return \"Hello \" .. name\nend\n";
     std::string ts = transpile(lua);
 
-    XCTAssert(contains(ts, "function greet(name: any): any"));
-    XCTAssert(contains(ts, "return (\"Hello \" + name);"));
+    MY_ASSERT(contains(ts, "function greet(name: any): any"));
+    MY_ASSERT(contains(ts, "return (\"Hello \" + name);"));
 
     // Local function
     std::string lua_local = "local function add(a, b)\n  return a + b\nend\n";
     std::string ts_local = transpile(lua_local);
-    XCTAssert(contains(ts_local, "function add(a: any, b: any): any"));
+    MY_ASSERT(contains(ts_local, "function add(a: any, b: any): any"));
 
     // Anonymous function
     std::string lua_anon = "local fn = function(x) return x * 2 end\n";
     std::string ts_anon = transpile(lua_anon);
-    XCTAssert(contains(ts_anon, "(x: any): any =>"));
+    MY_ASSERT(contains(ts_anon, "(x: any): any =>"));
 }
 
 - (void)test_tables_and_objects {
@@ -86,13 +66,13 @@ static bool contains(const std::string& text, const std::string& sub) {
     // Array
     std::string lua_arr = "local arr = { 10, 20, 30 }\n";
     std::string ts_arr = transpile(lua_arr);
-    XCTAssert(contains(ts_arr, "[10, 20, 30]"));
+    MY_ASSERT(contains(ts_arr, "[10, 20, 30]"));
 
     // Object
     std::string lua_obj = "local user = { name = \"Alice\", age = 30 }\n";
     std::string ts_obj = transpile(lua_obj);
-    XCTAssert(contains(ts_obj, "name: \"Alice\""));
-    XCTAssert(contains(ts_obj, "age: 30"));
+    MY_ASSERT(contains(ts_obj, "name: \"Alice\""));
+    MY_ASSERT(contains(ts_obj, "age: 30"));
 }
 
 - (void)test_control_flow {
@@ -107,22 +87,22 @@ static bool contains(const std::string& text, const std::string& sub) {
         "  print(\"low\")\n"
         "end\n";
     std::string ts_if = transpile(lua_if);
-    XCTAssert(contains(ts_if, "if ((x > 10)) {"));
-    XCTAssert(contains(ts_if, "} else if ((x > 5)) {"));
-    XCTAssert(contains(ts_if, "} else {"));
-    XCTAssert(contains(ts_if, "console.log(\"high\");"));
+    MY_ASSERT(contains(ts_if, "if ((x > 10)) {"));
+    MY_ASSERT(contains(ts_if, "} else if ((x > 5)) {"));
+    MY_ASSERT(contains(ts_if, "} else {"));
+    MY_ASSERT(contains(ts_if, "console.log(\"high\");"));
 
     // While loop
     std::string lua_while = "while count > 0 do\n  count = count - 1\nend\n";
     std::string ts_while = transpile(lua_while);
-    XCTAssert(contains(ts_while, "while ((count > 0)) {"));
-    XCTAssert(contains(ts_while, "count = (count - 1);"));
+    MY_ASSERT(contains(ts_while, "while ((count > 0)) {"));
+    MY_ASSERT(contains(ts_while, "count = (count - 1);"));
 
     // Repeat loop
     std::string lua_repeat = "repeat\n  i = i + 1\nuntil i == 10\n";
     std::string ts_repeat = transpile(lua_repeat);
-    XCTAssert(contains(ts_repeat, "do {"));
-    XCTAssert(contains(ts_repeat, "} while (!((i === 10)));"));
+    MY_ASSERT(contains(ts_repeat, "do {"));
+    MY_ASSERT(contains(ts_repeat, "} while (!((i === 10)));"));
 }
 
 - (void)test_for_loops {
@@ -130,23 +110,23 @@ static bool contains(const std::string& text, const std::string& sub) {
     // Numeric for: step 1
     std::string lua_for1 = "for i = 1, 10 do\n  print(i)\nend\n";
     std::string ts_for1 = transpile(lua_for1);
-    XCTAssert(contains(ts_for1, "for (let i = 1; i <= 10; i++) {"));
+    MY_ASSERT(contains(ts_for1, "for (let i = 1; i <= 10; i++) {"));
 
     // Numeric for: step -1
     std::string lua_for2 = "for i = 10, 1, -1 do\n  print(i)\nend\n";
     std::string ts_for2 = transpile(lua_for2);
-    XCTAssert(contains(ts_for2, "for (let i = 10; i >= 1; i--) {"));
+    MY_ASSERT(contains(ts_for2, "for (let i = 10; i >= 1; i--) {"));
 
     // Generic for: pairs
     std::string lua_pairs = "for k, v in pairs(tbl) do\n  print(k, v)\nend\n";
     std::string ts_pairs = transpile(lua_pairs);
-    XCTAssert(contains(ts_pairs, "for (const [k, v] of Object.entries(tbl as Record<string, any>)) {"));
+    MY_ASSERT(contains(ts_pairs, "for (const [k, v] of Object.entries(tbl as Record<string, any>)) {"));
 
     // Generic for: ipairs
     std::string lua_ipairs = "for i, val in ipairs(list) do\n  print(i, val)\nend\n";
     std::string ts_ipairs = transpile(lua_ipairs);
-    XCTAssert(contains(ts_ipairs, "for (const [_i_idx, val] of (list as any[]).entries()) {"));
-    XCTAssert(contains(ts_ipairs, "const i = _i_idx + 1;"));
+    MY_ASSERT(contains(ts_ipairs, "for (const [_i_idx, val] of (list as any[]).entries()) {"));
+    MY_ASSERT(contains(ts_ipairs, "const i = _i_idx + 1;"));
 }
 
 - (void)test_operators_and_math {
@@ -159,11 +139,11 @@ static bool contains(const std::string& text, const std::string& sub) {
         "local len = #arr\n";
     std::string ts = transpile(lua);
 
-    XCTAssert(contains(ts, "Math.pow(a, b)"));
-    XCTAssert(contains(ts, "Math.floor((a) / (b))"));
-    XCTAssert(contains(ts, "(a !== b)"));
-    XCTAssert(contains(ts, "Math.floor(3.7)"));
-    XCTAssert(contains(ts, "(arr).length"));
+    MY_ASSERT(contains(ts, "Math.pow(a, b)"));
+    MY_ASSERT(contains(ts, "Math.floor((a) / (b))"));
+    MY_ASSERT(contains(ts, "(a !== b)"));
+    MY_ASSERT(contains(ts, "Math.floor(3.7)"));
+    MY_ASSERT(contains(ts, "(arr).length"));
 }
 
 - (void)test_standard_library_and_methods {
@@ -175,10 +155,10 @@ static bool contains(const std::string& text, const std::string& sub) {
         "hero:takeDamage(25)\n";
     std::string ts = transpile(lua);
 
-    XCTAssert(contains(ts, "arr.push(99);"));
-    XCTAssert(contains(ts, "arr.join(\", \")"));
-    XCTAssert(contains(ts, "typeof (x)"));
-    XCTAssert(contains(ts, "hero.takeDamage(25);"));
+    MY_ASSERT(contains(ts, "arr.push(99);"));
+    MY_ASSERT(contains(ts, "arr.join(\", \")"));
+    MY_ASSERT(contains(ts, "typeof (x)"));
+    MY_ASSERT(contains(ts, "hero.takeDamage(25);"));
 }
 
 - (void)test_oop_method_definition {
@@ -189,8 +169,8 @@ static bool contains(const std::string& text, const std::string& sub) {
         "end\n";
     std::string ts = transpile(lua);
 
-    XCTAssert(contains(ts, "Player.levelUp = function(this: any, amount: any): any {"));
-    XCTAssert(contains(ts, "self.level = (self.level + amount);"));
+    MY_ASSERT(contains(ts, "Player.levelUp = function(this: any, amount: any): any {"));
+    MY_ASSERT(contains(ts, "self.level = (self.level + amount);"));
 }
 
 - (void)test_array_indexing {
@@ -199,9 +179,9 @@ static bool contains(const std::string& text, const std::string& sub) {
     // 1. Array index access and assignment with integer literals (default mode: Literals)
     std::string lua1 = "local first = arr[1]\narr[2] = 99\nlocal key = dict[\"name\"]\n";
     std::string ts1 = transpile(lua1);
-    XCTAssert(contains(ts1, "let first: any = arr[0];"));
-    XCTAssert(contains(ts1, "arr[1] = 99;"));
-    XCTAssert(contains(ts1, "let key: any = dict[\"name\"];"));
+    MY_ASSERT(contains(ts1, "let first: any = arr[0];"));
+    MY_ASSERT(contains(ts1, "arr[1] = 99;"));
+    MY_ASSERT(contains(ts1, "let key: any = dict[\"name\"];"));
 
     // 2. AllNumeric index adjustment mode
     std::string lua2 = "local val = arr[idx]\n";
@@ -212,7 +192,7 @@ static bool contains(const std::string& text, const std::string& sub) {
     opt.index_adjustment = IndexAdjustment::AllNumeric;
     TypeScriptEmitter emitter(opt);
     std::string ts2 = emitter.emit(*ast);
-    XCTAssert(contains(ts2, "arr[(idx) - 1]"));
+    MY_ASSERT(contains(ts2, "arr[(idx) - 1]"));
 }
 
 /*
