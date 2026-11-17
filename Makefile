@@ -1,5 +1,5 @@
 CXX ?= clang++
-CXXFLAGS ?= -std=c++17 -Wall -Wextra -O2 -Iinclude
+CXXFLAGS ?= -std=c++17 -Wall -Wextra -O2 -Isrc
 
 SRCS = src/lexer.cpp src/parser.cpp src/emitter.cpp
 OBJS = $(SRCS:.cpp=.o)

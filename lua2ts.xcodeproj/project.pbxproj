@@ -6,6 +6,14 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		30DA213B30ACA509008CCBF8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 30DA213A30ACA502008CCBF8 /* README.md */; };
+		30DA213D30ACA582008CCBF8 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 30DA213C30ACA582008CCBF8 /* Makefile */; };
+		30DA213F30ACA5A4008CCBF8 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30DA213E30ACA5A4008CCBF8 /* CMakeLists.txt */; };
+		30DA214430ACA60C008CCBF8 /* game.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30DA214130ACA60C008CCBF8 /* game.lua */; };
+		30DA214530ACA60C008CCBF8 /* game.js in Resources */ = {isa = PBXBuildFile; fileRef = 30DA214030ACA60C008CCBF8 /* game.js */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		30DA211330AC9FD8008CCBF8 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,12 +27,39 @@
 
 /* Begin PBXFileReference section */
 		30DA211530AC9FD8008CCBF8 /* lua2ts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = lua2ts; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DA212F30ACA15C008CCBF8 /* lua2ts-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lua2ts-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DA213A30ACA502008CCBF8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		30DA213C30ACA582008CCBF8 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		30DA213E30ACA5A4008CCBF8 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		30DA214030ACA60C008CCBF8 /* game.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
+		30DA214130ACA60C008CCBF8 /* game.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = game.lua; sourceTree = "<group>"; };
+		30DA214230ACA60C008CCBF8 /* game.ts */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.typescript; path = game.ts; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		30DA213930ACA22F008CCBF8 /* Exceptions for "src" folder in "lua2ts-tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				emitter.cpp,
+				lexer.cpp,
+				parser.cpp,
+			);
+			target = 30DA212E30ACA15C008CCBF8 /* lua2ts-tests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		30DA211730AC9FD8008CCBF8 /* lua2ts */ = {
+		30DA211730AC9FD8008CCBF8 /* src */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = lua2ts;
+			exceptions = (
+				30DA213930ACA22F008CCBF8 /* Exceptions for "src" folder in "lua2ts-tests" target */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		30DA213030ACA15C008CCBF8 /* tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -35,13 +70,23 @@
 			files = (
 			);
 		};
+		30DA212C30ACA15C008CCBF8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		30DA210C30AC9FD8008CCBF8 = {
 			isa = PBXGroup;
 			children = (
-				30DA211730AC9FD8008CCBF8 /* lua2ts */,
+				30DA214330ACA60C008CCBF8 /* examples */,
+				30DA213E30ACA5A4008CCBF8 /* CMakeLists.txt */,
+				30DA213C30ACA582008CCBF8 /* Makefile */,
+				30DA213A30ACA502008CCBF8 /* README.md */,
+				30DA211730AC9FD8008CCBF8 /* src */,
+				30DA213030ACA15C008CCBF8 /* tests */,
 				30DA211630AC9FD8008CCBF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,8 +95,19 @@
 			isa = PBXGroup;
 			children = (
 				30DA211530AC9FD8008CCBF8 /* lua2ts */,
+				30DA212F30ACA15C008CCBF8 /* lua2ts-tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		30DA214330ACA60C008CCBF8 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				30DA214030ACA60C008CCBF8 /* game.js */,
+				30DA214130ACA60C008CCBF8 /* game.lua */,
+				30DA214230ACA60C008CCBF8 /* game.ts */,
+			);
+			path = examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,12 +124,30 @@
 			buildRules = (
 			);
 			fileSystemSynchronizedGroups = (
-				30DA211730AC9FD8008CCBF8 /* lua2ts */,
+				30DA211730AC9FD8008CCBF8 /* src */,
 			);
 			name = lua2ts;
 			productName = lua2ts;
 			productReference = 30DA211530AC9FD8008CCBF8 /* lua2ts */;
 			productType = "com.apple.product-type.tool";
+		};
+		30DA212E30ACA15C008CCBF8 /* lua2ts-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30DA213330ACA15C008CCBF8 /* Build configuration list for PBXNativeTarget "lua2ts-tests" */;
+			buildPhases = (
+				30DA212B30ACA15C008CCBF8 /* Sources */,
+				30DA212C30ACA15C008CCBF8 /* Frameworks */,
+				30DA212D30ACA15C008CCBF8 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				30DA213030ACA15C008CCBF8 /* tests */,
+			);
+			name = "lua2ts-tests";
+			productName = "lua2ts-tests";
+			productReference = 30DA212F30ACA15C008CCBF8 /* lua2ts-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -85,6 +159,9 @@
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					30DA211430AC9FD8008CCBF8 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					30DA212E30ACA15C008CCBF8 = {
 						CreatedOnToolsVersion = 27.0;
 					};
 				};
@@ -104,14 +181,33 @@
 			projectRoot = "";
 			targets = (
 				30DA211430AC9FD8008CCBF8 /* lua2ts */,
+				30DA212E30ACA15C008CCBF8 /* lua2ts-tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30DA212D30ACA15C008CCBF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				30DA213F30ACA5A4008CCBF8 /* CMakeLists.txt in Resources */,
+				30DA214430ACA60C008CCBF8 /* game.lua in Resources */,
+				30DA214530ACA60C008CCBF8 /* game.js in Resources */,
+				30DA213B30ACA509008CCBF8 /* README.md in Resources */,
+			);
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		30DA211130AC9FD8008CCBF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+			);
+		};
+		30DA212B30ACA15C008CCBF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				30DA213D30ACA582008CCBF8 /* Makefile in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
@@ -156,7 +252,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu23;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -218,7 +314,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu23;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -254,6 +350,38 @@
 			};
 			name = Release;
 		};
+		30DA213430ACA15C008CCBF8 /* Debug configuration for PBXNativeTarget "lua2ts-tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5GH94K69R8;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.piringer.lua2ts-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		30DA213530ACA15C008CCBF8 /* Release configuration for PBXNativeTarget "lua2ts-tests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5GH94K69R8;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.piringer.lua2ts-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -270,6 +398,14 @@
 			buildConfigurations = (
 				30DA211D30AC9FD8008CCBF8 /* Debug configuration for PBXNativeTarget "lua2ts" */,
 				30DA211E30AC9FD8008CCBF8 /* Release configuration for PBXNativeTarget "lua2ts" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		30DA213330ACA15C008CCBF8 /* Build configuration list for PBXNativeTarget "lua2ts-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DA213430ACA15C008CCBF8 /* Debug configuration for PBXNativeTarget "lua2ts-tests" */,
+				30DA213530ACA15C008CCBF8 /* Release configuration for PBXNativeTarget "lua2ts-tests" */,
 			);
 			defaultConfigurationName = Release;
 		};
